@@ -4,23 +4,38 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-    public float speed = 0.5f;//how fast the wolf can move
+    public float speed = 0.05f;//how fast the wolf can move
+    public float walkSpeed = 0.05f;//walk
+    public float runSpeed = 0.1f;//run
+    public float chaseThreshold = 5.0f;//how close the wolf has to be to run after target
+    public GameObject markerObject;//the object used to mark the wolf's current target
 
     public AudioSource woof;
     public AudioSource breathing;
     public AudioSource howl;
 
     public Vector2 targetLocation;
+    public GameObject targetObject;//the object it moves towards
 
     public bool enroute = false;
 
 	// Use this for initialization
 	void Start () {
-        targetLocation = transform.position;
+        setTargetLocation(transform.position);
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
+        speed = walkSpeed;
+        if (targetObject != null)
+        {
+            setTargetLocation(targetObject.transform.position);
+            if (Vector2.Distance(transform.position, targetObject.transform.position) <= chaseThreshold)
+            {
+                speed = runSpeed;
+            }
+        }
         if ((Vector2)transform.position != targetLocation)
         {
             if (!woof.isPlaying && !breathing.isPlaying)
@@ -37,9 +52,26 @@ public class PlayerController : MonoBehaviour {
             howl.Play();
         }
 	}
+
+    public void setTargetLocation(Vector2 pos)
+    {
+        targetLocation = pos;
+        markerObject.transform.position = pos;
+    }
+
     public void processTapGesture(Vector3 gpos)
     {
-        targetLocation = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D rch2d = Physics2D.Raycast(gpos, Vector3.zero);
+        Debug.Log("gpos: " + gpos);
+        if (rch2d && rch2d.collider.gameObject.GetComponent<DeerAI>() != null)
+        {
+            targetObject = rch2d.collider.gameObject;
+        }
+        else
+        {
+            targetObject = null;
+        }
+        setTargetLocation(gpos);
         woof.Play();
         howl.Stop();
     }
