@@ -5,6 +5,10 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     public float speed = 0.05f;//how fast the wolf can move
+    public float walkSpeed = 0.05f;//walk
+    public float runSpeed = 0.1f;//run
+    public float chaseThreshold = 5.0f;//how close the wolf has to be to run after target
+    public GameObject markerObject;//the object used to mark the wolf's current target
 
     public AudioSource woof;
     public AudioSource breathing;
@@ -21,10 +25,16 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
+        speed = walkSpeed;
         if (targetObject != null)
         {
-            targetLocation = targetObject.transform.position;
+            setTargetLocation(targetObject.transform.position);
+            if (Vector2.Distance(transform.position, targetObject.transform.position) <= chaseThreshold)
+            {
+                speed = runSpeed;
+            }
         }
         if ((Vector2)transform.position != targetLocation)
         {
@@ -42,14 +52,26 @@ public class PlayerController : MonoBehaviour {
             howl.Play();
         }
 	}
+
+    public void setTargetLocation(Vector2 pos)
+    {
+        targetLocation = pos;
+        markerObject.transform.position = pos;
+    }
+
     public void processTapGesture(Vector3 gpos)
     {
         RaycastHit2D rch2d = Physics2D.Raycast(gpos, Vector3.zero);
+        Debug.Log("gpos: " + gpos);
         if (rch2d && rch2d.collider.gameObject.GetComponent<DeerAI>() != null)
         {
             targetObject = rch2d.collider.gameObject;
         }
-        targetLocation = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        else
+        {
+            targetObject = null;
+        }
+        setTargetLocation(gpos);
         woof.Play();
         howl.Stop();
     }
