@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        targetLocation = transform.position;
+        setTargetLocation(transform.position);
 	}
 	
 	// Update is called once per frame
