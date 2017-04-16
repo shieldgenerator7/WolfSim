@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour {
                 breathing.Play();
             }
             float terrainMultiplier = LevelManager.getTile(transform.position).terrainSpeedMultiplier;
-            transform.position = Vector2.MoveTowards(transform.position, targetLocation, speed* terrainMultiplier);
+            transform.position = Vector2.MoveTowards(transform.position, targetLocation, speed* terrainMultiplier * Time.deltaTime);
             enroute = true;
         }
         else if (enroute == true)

@@ -179,6 +179,7 @@ GameObject:
   - component: {fileID: 400106445}
   - component: {fileID: 400106444}
   - component: {fileID: 400106443}
+  - component: {fileID: 400106447}
   m_Layer: 0
   m_Name: deer (2)
   m_TagString: Untagged
@@ -213,7 +214,7 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.1, y: 0.5}
   serializedVersion: 2
   m_Radius: 0.5
 --- !u!212 &400106445
@@ -264,6 +265,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &400106447
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 400106442}
+  m_BodyType: 1
+  m_Simulated: 0
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &416844093
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,6 +299,7 @@ GameObject:
   - component: {fileID: 416844098}
   - component: {fileID: 416844097}
   - component: {fileID: 416844100}
+  - component: {fileID: 416844101}
   m_Layer: 0
   m_Name: wolf
   m_TagString: Player
@@ -297,8 +319,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.05
-  walkSpeed: 0.2
-  runSpeed: 0.5
+  walkSpeed: 1
+  runSpeed: 2
   chaseThreshold: 7
   markerObject: {fileID: 349378107}
   deerEatenText: {fileID: 1370835440}
@@ -608,9 +630,29 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.5}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!50 &416844101
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 416844093}
+  m_BodyType: 1
+  m_Simulated: 0
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &758273556
 GameObject:
   m_ObjectHideFlags: 0
@@ -669,6 +711,7 @@ GameObject:
   - component: {fileID: 844693310}
   - component: {fileID: 844693309}
   - component: {fileID: 844693308}
+  - component: {fileID: 844693312}
   m_Layer: 0
   m_Name: deer (4)
   m_TagString: Untagged
@@ -703,7 +746,7 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.1, y: 0.5}
   serializedVersion: 2
   m_Radius: 0.5
 --- !u!212 &844693310
@@ -754,6 +797,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &844693312
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 844693307}
+  m_BodyType: 1
+  m_Simulated: 0
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &871493384
 GameObject:
   m_ObjectHideFlags: 0
@@ -765,6 +828,7 @@ GameObject:
   - component: {fileID: 871493387}
   - component: {fileID: 871493386}
   - component: {fileID: 871493385}
+  - component: {fileID: 871493389}
   m_Layer: 0
   m_Name: deer (1)
   m_TagString: Untagged
@@ -799,7 +863,7 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.1, y: 0.5}
   serializedVersion: 2
   m_Radius: 0.5
 --- !u!212 &871493387
@@ -850,6 +914,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &871493389
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 871493384}
+  m_BodyType: 1
+  m_Simulated: 0
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &896491001
 GameObject:
   m_ObjectHideFlags: 0
@@ -861,6 +945,7 @@ GameObject:
   - component: {fileID: 896491004}
   - component: {fileID: 896491003}
   - component: {fileID: 896491002}
+  - component: {fileID: 896491006}
   m_Layer: 0
   m_Name: deer (3)
   m_TagString: Untagged
@@ -895,7 +980,7 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.1, y: 0.5}
   serializedVersion: 2
   m_Radius: 0.5
 --- !u!212 &896491004
@@ -946,6 +1031,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &896491006
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 896491001}
+  m_BodyType: 1
+  m_Simulated: 0
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1128514657
 GameObject:
   m_ObjectHideFlags: 0
@@ -957,6 +1062,7 @@ GameObject:
   - component: {fileID: 1128514659}
   - component: {fileID: 1128514658}
   - component: {fileID: 1128514661}
+  - component: {fileID: 1128514662}
   m_Layer: 0
   m_Name: deer
   m_TagString: Untagged
@@ -975,7 +1081,7 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.1, y: 0.5}
   serializedVersion: 2
   m_Radius: 0.5
 --- !u!212 &1128514659
@@ -1042,6 +1148,26 @@ MonoBehaviour:
   runSpeed: 0.4
   wolf: {fileID: 416844093}
   safeThreshold: 7
+--- !u!50 &1128514662
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1128514657}
+  m_BodyType: 1
+  m_Simulated: 0
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1271805229
 GameObject:
   m_ObjectHideFlags: 0

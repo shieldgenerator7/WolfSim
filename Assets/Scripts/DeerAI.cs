@@ -13,18 +13,26 @@ public class DeerAI : MonoBehaviour {
     private Vector2 direction;
 
     private SpriteRenderer sr;
+    private CircleCollider2D cc2d;
 
     // Use this for initialization
     void Start () {
         sr = GetComponent<SpriteRenderer>();
+        cc2d = GetComponent<CircleCollider2D>();
         relocate();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!LevelManager.inBounds(transform.position))
+        {
+            relocate();
+        }
         speed = walkSpeed;
-        if (Vector3.Distance(transform.position, wolf.transform.position) <= safeThreshold)
+        RaycastHit2D[] rch2ds = new RaycastHit2D[1];
+        cc2d.Cast(wolf.transform.position - transform.position,rch2ds,safeThreshold);
+        if (rch2ds[0] && rch2ds[0].collider.gameObject == wolf)
         {
             direction = transform.position - wolf.transform.position;
             speed = runSpeed;
@@ -34,11 +42,7 @@ public class DeerAI : MonoBehaviour {
             direction = direction + new Vector2(Random.Range(-10, 10), Random.Range(-10, 10)).normalized;
         }
         float terrainMultiplier = LevelManager.getTile(transform.position).terrainSpeedMultiplier;
-        transform.position = Vector2.MoveTowards(transform.position, ((Vector2)transform.position) + direction, speed*terrainMultiplier);
-        if (!LevelManager.inBounds(transform.position))
-        {
-            relocate();
-        }
+        transform.position = Vector2.MoveTowards(transform.position, ((Vector2)transform.position) + direction, speed*terrainMultiplier*Time.deltaTime);
         sr.sortingOrder = LevelManager.getDisplaySortingOrder(transform.position);
 
     }
