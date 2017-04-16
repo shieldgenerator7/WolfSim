@@ -75,6 +75,7 @@ public class PlayerController : MonoBehaviour {
             howl.Play();
             targetObject = null;
         }
+        sr.flipX = (targetLocation-(Vector2)transform.position).x < 0;
         sr.sortingOrder = LevelManager.getDisplaySortingOrder(transform.position);
 	}
 
@@ -108,7 +109,11 @@ public class PlayerController : MonoBehaviour {
             deer.relocate();
             deerEaten++;
             deerEatenText.text = "" + deerEaten;
-            targetObject = null;
+            if (targetObject != null)
+            {
+                targetObject = null;
+                setTargetLocation(transform.position);
+            }
         }
     }
 }

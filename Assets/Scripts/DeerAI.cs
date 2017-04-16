@@ -73,6 +73,7 @@ public class DeerAI : MonoBehaviour {
         }
         float terrainMultiplier = LevelManager.getTile(transform.position).terrainSpeedMultiplier;
         transform.position = Vector2.MoveTowards(transform.position, ((Vector2)transform.position) + direction, speed*terrainMultiplier*Time.deltaTime);
+        sr.flipX = direction.x < 0;
         sr.sortingOrder = LevelManager.getDisplaySortingOrder(transform.position);
 
     }

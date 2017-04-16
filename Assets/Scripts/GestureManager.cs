@@ -217,6 +217,7 @@ public class GestureManager : MonoBehaviour
                     {
                         //Move the camera
                         cam.transform.position = newPos;
+                        cmaController.pinPoint();
                     }
                 }
             }

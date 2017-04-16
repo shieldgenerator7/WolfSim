@@ -94,7 +94,7 @@ MonoBehaviour:
   wolf: {fileID: 0}
   safeThreshold: 10
   panicTime: 0
-  panicTimeAmount: 1
+  panicTimeAmount: 2
 --- !u!212 &212975421897730708
 SpriteRenderer:
   m_ObjectHideFlags: 1
