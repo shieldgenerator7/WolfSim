@@ -40,7 +40,7 @@ public class LevelManager : MonoBehaviour {
     }
     public static int getDisplaySortingOrder(Vector2 pos)
     {
-        return (int)((100 - pos.y) * 100);
+        return (int)((instance.tileHeight/2 - pos.y) * 100);
     }
 
     private void generateLevel(int width, int height)
