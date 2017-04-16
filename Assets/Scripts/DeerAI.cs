@@ -30,9 +30,8 @@ public class DeerAI : MonoBehaviour {
             relocate();
         }
         speed = walkSpeed;
-        RaycastHit2D[] rch2ds = new RaycastHit2D[1];
-        cc2d.Cast(wolf.transform.position - transform.position,rch2ds,safeThreshold);
-        if (rch2ds[0] && rch2ds[0].collider.gameObject == wolf)
+        RaycastHit2D[] rch2ds = Physics2D.RaycastAll(transform.position, wolf.transform.position - transform.position,safeThreshold);
+        if (rch2ds.Length > 1 && rch2ds[1] && rch2ds[1].collider.gameObject == wolf)
         {
             direction = transform.position - wolf.transform.position;
             speed = runSpeed;

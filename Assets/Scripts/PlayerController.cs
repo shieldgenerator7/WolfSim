@@ -58,12 +58,6 @@ public class PlayerController : MonoBehaviour {
             enroute = false;
             breathing.Stop();
             howl.Play();
-            if (targetObject != null)
-            {
-                targetObject.GetComponent<DeerAI>().relocate();
-                deerEaten++;
-                deerEatenText.text = "" + deerEaten;
-            }
             targetObject = null;
         }
         sr.sortingOrder = LevelManager.getDisplaySortingOrder(transform.position);
@@ -89,5 +83,17 @@ public class PlayerController : MonoBehaviour {
         setTargetLocation(gpos);
         woof.Play();
         howl.Stop();
+    }
+
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        DeerAI deer = coll.gameObject.GetComponent<DeerAI>();
+        if (deer != null)
+        {
+            deer.relocate();
+            deerEaten++;
+            deerEatenText.text = "" + deerEaten;
+            targetObject = null;
+        }
     }
 }
