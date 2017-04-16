@@ -45,16 +45,16 @@ public class LevelManager : MonoBehaviour {
     public static Vector2 randomPosition()
     {
         return new Vector2(
-            Random.Range(-instance.tileWidth / 2, instance.tileWidth / 2) * 0.99f,
-            Random.Range(-instance.tileHeight / 2, instance.tileHeight / 2) * 0.99f
+            Random.Range(-instance.tileWidth / 2, instance.tileWidth / 2) * 0.9f,
+            Random.Range(-instance.tileHeight / 2, instance.tileHeight / 2) * 0.9f
             );
     }
     public static bool inBounds(Vector2 pos)
     {
-        return pos.x > -instance.tileWidth / 2
-            && pos.x < instance.tileWidth / 2
-            && pos.y > -instance.tileHeight / 2
-            && pos.y < instance.tileHeight / 2;
+        return pos.x > -instance.tileWidth / 2 * 0.99f
+            && pos.x < instance.tileWidth / 2 * 0.99f
+            && pos.y > -instance.tileHeight / 2 * 0.99f
+            && pos.y < instance.tileHeight / 2 * 0.99f;
     }
 
     private void generateLevel(int width, int height)

@@ -14,10 +14,12 @@ public class DeerAI : MonoBehaviour {
 
     private SpriteRenderer sr;
     private CircleCollider2D cc2d;
+    private Color baseColor;
 
     // Use this for initialization
     void Start () {
         sr = GetComponent<SpriteRenderer>();
+        baseColor = sr.color;
         cc2d = GetComponent<CircleCollider2D>();
         relocate();
     }
@@ -31,14 +33,33 @@ public class DeerAI : MonoBehaviour {
         }
         speed = walkSpeed;
         RaycastHit2D[] rch2ds = Physics2D.RaycastAll(transform.position, wolf.transform.position - transform.position,safeThreshold);
-        if (rch2ds.Length > 1 && rch2ds[1] && rch2ds[1].collider.gameObject == wolf)
+        bool wolfFound = false;
+        for (int i = 0; i < rch2ds.Length; i++)
+        {
+            RaycastHit2D rch2d = rch2ds[i];
+            if (rch2d.collider.gameObject != this.gameObject)
+            {
+                if (rch2d.collider.gameObject == wolf)
+                {
+                    wolfFound = true;
+                    break;
+                }
+                else if (rch2d.collider.gameObject.name.Contains("tree"))
+                {
+                    break;
+                }
+            }
+        }
+        if (wolfFound)
         {
             direction = transform.position - wolf.transform.position;
             speed = runSpeed;
+            sr.color = Color.red;
         }
         else
         {
             direction = direction + new Vector2(Random.Range(-10, 10), Random.Range(-10, 10)).normalized;
+            sr.color = baseColor;
         }
         float terrainMultiplier = LevelManager.getTile(transform.position).terrainSpeedMultiplier;
         transform.position = Vector2.MoveTowards(transform.position, ((Vector2)transform.position) + direction, speed*terrainMultiplier*Time.deltaTime);

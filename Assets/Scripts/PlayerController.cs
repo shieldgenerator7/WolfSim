@@ -52,6 +52,21 @@ public class PlayerController : MonoBehaviour {
             float terrainMultiplier = LevelManager.getTile(transform.position).terrainSpeedMultiplier;
             transform.position = Vector2.MoveTowards(transform.position, targetLocation, speed* terrainMultiplier * Time.deltaTime);
             enroute = true;
+            if (targetObject != null)
+            {
+                if (Vector3.Distance(transform.position, targetObject.transform.position) < chaseThreshold)
+                {
+                    markerObject.GetComponent<SpriteRenderer>().color = Color.green;
+                }
+                else
+                {
+                    markerObject.GetComponent<SpriteRenderer>().color = Color.red;
+                }
+            }
+            else
+            {
+                markerObject.GetComponent<SpriteRenderer>().color = Color.white;
+            }
         }
         else if (enroute == true)
         {
