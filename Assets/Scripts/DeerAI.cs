@@ -30,6 +30,7 @@ public class DeerAI : MonoBehaviour {
         {
             direction = direction + new Vector2(Random.Range(-10, 10), Random.Range(-10, 10)).normalized;
         }
-        transform.position = Vector2.MoveTowards(transform.position, ((Vector2)transform.position) + direction, speed);
+        float terrainMultiplier = LevelManager.getTile(transform.position).terrainSpeedMultiplier;
+        transform.position = Vector2.MoveTowards(transform.position, ((Vector2)transform.position) + direction, speed*terrainMultiplier);
     }
 }

@@ -42,7 +42,8 @@ public class PlayerController : MonoBehaviour {
             {
                 breathing.Play();
             }
-            transform.position = Vector2.MoveTowards(transform.position, targetLocation, speed);
+            float terrainMultiplier = LevelManager.getTile(transform.position).terrainSpeedMultiplier;
+            transform.position = Vector2.MoveTowards(transform.position, targetLocation, speed* terrainMultiplier);
             enroute = true;
         }
         else if (enroute == true)
@@ -50,6 +51,7 @@ public class PlayerController : MonoBehaviour {
             enroute = false;
             breathing.Stop();
             howl.Play();
+            targetObject = null;
         }
 	}
 
@@ -62,7 +64,6 @@ public class PlayerController : MonoBehaviour {
     public void processTapGesture(Vector3 gpos)
     {
         RaycastHit2D rch2d = Physics2D.Raycast(gpos, Vector3.zero);
-        Debug.Log("gpos: " + gpos);
         if (rch2d && rch2d.collider.gameObject.GetComponent<DeerAI>() != null)
         {
             targetObject = rch2d.collider.gameObject;

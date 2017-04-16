@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4917379786773498}
   - component: {fileID: 212760302869434074}
+  - component: {fileID: 114751192884914420}
   m_Layer: 0
   m_Name: grass
   m_TagString: Untagged
@@ -40,6 +41,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114751192884914420
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1343941217465936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41a90fcc13ca9c24d84ada39fe667553, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terrainSpeedMultiplier: 1
 --- !u!212 &212760302869434074
 SpriteRenderer:
   m_ObjectHideFlags: 1

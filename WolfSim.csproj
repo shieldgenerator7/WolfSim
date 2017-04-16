@@ -80,6 +80,7 @@
     <Compile Include="Assets\Scripts\GestureManager.cs" />
     <Compile Include="Assets\Scripts\GestureProfile.cs" />
     <Compile Include="Assets\Scripts\LevelManager.cs" />
+    <Compile Include="Assets\Scripts\LevelTile.cs" />
     <Compile Include="Assets\Scripts\MarkerUpdater.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
   </ItemGroup>
