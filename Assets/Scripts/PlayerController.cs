@@ -19,9 +19,12 @@ public class PlayerController : MonoBehaviour {
 
     public bool enroute = false;
 
+    private SpriteRenderer sr;
+
 	// Use this for initialization
 	void Start () {
         setTargetLocation(transform.position);
+        sr = GetComponent<SpriteRenderer>();
 	}
 	
 	// Update is called once per frame
@@ -53,6 +56,7 @@ public class PlayerController : MonoBehaviour {
             howl.Play();
             targetObject = null;
         }
+        sr.sortingOrder = LevelManager.getDisplaySortingOrder(transform.position);
 	}
 
     public void setTargetLocation(Vector2 pos)

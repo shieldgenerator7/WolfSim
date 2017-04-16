@@ -6,6 +6,7 @@ public class LevelManager : MonoBehaviour {
 
     public GameObject grassPrefab;
     public GameObject waterPrefab;
+    public GameObject treePrefab;
     public int tileHeight = 100;//how many tiles across
     public int tileWidth = 100;//how many tiles from top to bottom
     public GameObject[,] tileMap;//the map of tiles
@@ -35,7 +36,11 @@ public class LevelManager : MonoBehaviour {
 
     public static LevelTile getTile(Vector2 pos)
     {
-        return instance.tileMap[(int)Mathf.Floor(pos.x)+instance.tileWidth/2, (int)Mathf.Floor(pos.y)+instance.tileHeight/2].GetComponent<LevelTile>();
+        return instance.tileMap[(int)Mathf.Ceil(pos.x)+instance.tileWidth/2, (int)Mathf.Ceil(pos.y)+instance.tileHeight/2].GetComponent<LevelTile>();
+    }
+    public static int getDisplaySortingOrder(Vector2 pos)
+    {
+        return (int)((100 - pos.y) * 100);
     }
 
     private void generateLevel(int width, int height)
@@ -56,6 +61,7 @@ public class LevelManager : MonoBehaviour {
                 tileMap[xi, yi] = go;
             }
         }
+        generateForest(treePrefab, new Vector2(90, 90), new Vector2(0, 0));
     }
 
     private void generateFill(GameObject prefab, GameObject[,] prefabMap, int width, int height)
@@ -91,6 +97,22 @@ public class LevelManager : MonoBehaviour {
                 prefabMap[xi, currentY] = prefab;
             }
             prevY = currentY;
+        }
+    }
+
+    private void generateForest(GameObject prefab, Vector2 size, Vector2 pos)
+    {
+        for (int count = 0; count < size.x * size.y / 3; count++)
+        {
+            float randomX = Random.Range(-size.x / 2, size.x / 2) + pos.x;
+            float randomY = Random.Range(-size.y / 2, size.y / 2) + pos.y;
+            Vector2 randomPos = new Vector2(randomX, randomY);
+            if (!getTile(randomPos).gameObject.name.Contains("water"))
+            {
+                GameObject go = GameObject.Instantiate(prefab);
+                go.transform.position = randomPos;
+                go.GetComponent<SpriteRenderer>().sortingOrder = getDisplaySortingOrder(randomPos);
+            }
         }
     }
 }

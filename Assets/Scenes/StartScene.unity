@@ -544,6 +544,7 @@ MonoBehaviour:
     type: 2}
   waterPrefab: {fileID: 1415755100382890, guid: e6730e08b2c1ccc46b09b068901e8003,
     type: 2}
+  treePrefab: {fileID: 1498183534639204, guid: 1a6704bef9aa3ae4595ec8f7d72752d3, type: 2}
   tileHeight: 100
   tileWidth: 100
 --- !u!4 &758273558

@@ -12,10 +12,12 @@ public class DeerAI : MonoBehaviour {
 
     private Vector2 direction;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    private SpriteRenderer sr;
+
+    // Use this for initialization
+    void Start () {
+        sr = GetComponent<SpriteRenderer>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -32,5 +34,6 @@ public class DeerAI : MonoBehaviour {
         }
         float terrainMultiplier = LevelManager.getTile(transform.position).terrainSpeedMultiplier;
         transform.position = Vector2.MoveTowards(transform.position, ((Vector2)transform.position) + direction, speed*terrainMultiplier);
+        sr.sortingOrder = LevelManager.getDisplaySortingOrder(transform.position);
     }
 }
