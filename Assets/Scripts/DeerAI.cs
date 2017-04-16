@@ -17,6 +17,7 @@ public class DeerAI : MonoBehaviour {
     // Use this for initialization
     void Start () {
         sr = GetComponent<SpriteRenderer>();
+        relocate();
     }
 
     // Update is called once per frame
@@ -34,6 +35,19 @@ public class DeerAI : MonoBehaviour {
         }
         float terrainMultiplier = LevelManager.getTile(transform.position).terrainSpeedMultiplier;
         transform.position = Vector2.MoveTowards(transform.position, ((Vector2)transform.position) + direction, speed*terrainMultiplier);
+        if (!LevelManager.inBounds(transform.position))
+        {
+            relocate();
+        }
         sr.sortingOrder = LevelManager.getDisplaySortingOrder(transform.position);
+
+    }
+
+    /// <summary>
+    /// Randomly teleports the deer after being eaten
+    /// </summary>
+    public void relocate()
+    {
+        transform.position = LevelManager.randomPosition();
     }
 }

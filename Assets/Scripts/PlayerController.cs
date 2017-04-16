@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
@@ -9,6 +10,9 @@ public class PlayerController : MonoBehaviour {
     public float runSpeed = 0.1f;//run
     public float chaseThreshold = 5.0f;//how close the wolf has to be to run after target
     public GameObject markerObject;//the object used to mark the wolf's current target
+    public Text deerEatenText;
+
+    public int deerEaten = 0;
 
     public AudioSource woof;
     public AudioSource breathing;
@@ -54,6 +58,12 @@ public class PlayerController : MonoBehaviour {
             enroute = false;
             breathing.Stop();
             howl.Play();
+            if (targetObject != null)
+            {
+                targetObject.GetComponent<DeerAI>().relocate();
+                deerEaten++;
+                deerEatenText.text = "" + deerEaten;
+            }
             targetObject = null;
         }
         sr.sortingOrder = LevelManager.getDisplaySortingOrder(transform.position);
