@@ -9,6 +9,8 @@ public class DeerAI : MonoBehaviour {
     public float runSpeed = 0.04f;
     public GameObject wolf;
     public float safeThreshold = 7.0f;//the deer is safe if the wolf is at least this far away
+    public float panicTime = 0;//the point in time when the deer can stop panicking
+    public float panicTimeAmount = 1.0f;//how long the deer will panic after it stops seeing the wolf
 
     private Vector2 direction;
 
@@ -50,11 +52,19 @@ public class DeerAI : MonoBehaviour {
                 }
             }
         }
-        if (wolfFound)
+        if (wolfFound || panicTime > Time.time)
         {
-            direction = transform.position - wolf.transform.position;
             speed = runSpeed;
-            sr.color = Color.red;
+            if (wolfFound)
+            {
+                direction = transform.position - wolf.transform.position;
+                sr.color = Color.red;
+                panicTime = Time.time + panicTimeAmount;
+            }
+            else
+            {
+                sr.color = Color.yellow;
+            }
         }
         else
         {

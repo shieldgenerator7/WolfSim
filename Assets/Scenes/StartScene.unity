@@ -204,7 +204,7 @@ MonoBehaviour:
   speed: 0.05
   walkSpeed: 1
   runSpeed: 2
-  chaseThreshold: 3
+  chaseThreshold: 4
   markerObject: {fileID: 349378107}
   deerEatenText: {fileID: 1370835440}
   deerEaten: 0
